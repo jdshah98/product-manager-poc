@@ -1,7 +1,7 @@
 package com.jdshah.product.repository;
 
-import com.jdshah.product.entity.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.jdshah.product.model.Product;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ProductRepository extends JpaRepository<Product, String> {
+public interface ProductRepository extends MongoRepository<Product, String> {
 }

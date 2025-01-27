@@ -1,26 +1,36 @@
 package com.jdshah.product.service;
 
-import com.jdshah.product.entity.Product;
+import com.jdshah.product.dto.ProductRequest;
+import com.jdshah.product.dto.ProductResponse;
+import com.jdshah.product.model.Product;
 import com.jdshah.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductResponse> getAllProducts() {
+        return productRepository.findAll().stream().map(product ->
+            new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice())
+        ).toList();
     }
 
-    public Product getProductById(String id) {
-        return productRepository.findById(id).orElse(null);
-    }
+    public ProductResponse createProduct(ProductRequest productRequest) {
+        Product product = Product.builder()
+                .name(productRequest.name())
+                .description(productRequest.description())
+                .price(productRequest.price())
+                .build();
+        productRepository.save(product);
+        log.info("Product created successfully");
 
-    public Product addProduct(Product product) {
-        return productRepository.save(product);
+        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
     }
 }
