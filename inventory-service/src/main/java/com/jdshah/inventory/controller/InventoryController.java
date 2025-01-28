@@ -1,31 +1,21 @@
 package com.jdshah.inventory.controller;
 
-import com.jdshah.inventory.entity.Inventory;
 import com.jdshah.inventory.service.InventoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/inventory")
+@RequestMapping("/api/inventory")
 public class InventoryController {
 
     private final InventoryService inventoryService;
 
     @GetMapping
-    public List<Inventory> getAllInventory() {
-        return inventoryService.getAllInventory();
+    @ResponseStatus(HttpStatus.OK)
+    public boolean isInStock(@RequestParam String skuCode, @RequestParam Integer quantity) {
+        return inventoryService.isInStock(skuCode, quantity);
     }
 
-    @GetMapping("/{productId}")
-    public Inventory getInventoryByProductId(@PathVariable String productId) {
-        return inventoryService.getInventoryByProductId(productId);
-    }
-
-    @PutMapping("/{productId}")
-    public Inventory updateInventory(@PathVariable String productId, @RequestParam int quantity) {
-        return inventoryService.updateInventory(productId, quantity);
-    }
 }

@@ -1,20 +1,18 @@
 package com.jdshah.inventory.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "t_inventory")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Inventory {
     @Id
-    private String productId;
-    private int quantity;
-    // Getters and setters
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String skuCode;
+    private Integer quantity;
 }
