@@ -11,3 +11,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+inventory:
+  url: http://localhost:8083
