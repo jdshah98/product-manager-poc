@@ -31,7 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### Docker ###
-volume-data/
-docker/keycloak/

@@ -5,13 +5,12 @@ spring:
   application:
     name: inventory-service
   datasource:
-    url: jdbc:mysql://localhost:3316/inventory_service
+    url: jdbc:mysql://localhost:3306/inventory_service
     username: root
     password: mysql
   jpa:
     hibernate:
       ddl-auto: none
-
 
 springdoc:
   swagger-ui:
