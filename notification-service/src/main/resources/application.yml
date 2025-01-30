@@ -7,16 +7,9 @@ spring:
   mail:
     host: localhost
     port: 1025
-  kafka:
-    bootstrap-servers: localhost:9092
-    consumer:
-      group-id: notificationService
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
-      properties:
-        schema:
-          registry:
-            url: http://localhost:8085
-        specific:
-          avro:
-            reader: true
+  jms:
+    servicebus:
+      connection-string: "${azure_bus_key:}"
+      pricing-tier: Standard
+    listener:
+      receive-timeout: 60000

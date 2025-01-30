@@ -11,17 +11,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-  kafka:
-    bootstrap-servers: localhost:9092
-    template:
-      default-topic: order-placed
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-      properties:
-        schema:
-          registry:
-            url: http://localhost:8085
+  jms:
+    servicebus:
+      connection-string: "${azure_bus_key:}"
+      pricing-tier: Standard
+    listener:
+      receive-timeout: 60000
 
 inventory:
   url: http://localhost:8083

@@ -11,7 +11,6 @@ import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.shaded.org.hamcrest.MatcherAssert;
 import org.testcontainers.shaded.org.hamcrest.Matchers;
-import org.testcontainers.utility.DockerImageName;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 0)
